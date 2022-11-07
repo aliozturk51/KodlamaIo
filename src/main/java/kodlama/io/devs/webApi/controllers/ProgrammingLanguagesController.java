@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlama.io.devs.business.abstracts.ProgrammingLanguageService;
+import kodlama.io.devs.business.requests.CreateProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.UpdateProgrammingLanguageRequest;
+import kodlama.io.devs.business.responses.GetAllProgrammingLanguagesResponse;
 import kodlama.io.devs.entities.concretes.ProgrammingLanguage;
 
 @RestController
@@ -27,33 +29,33 @@ public class ProgrammingLanguagesController {
 	}
 
 	@GetMapping("/getall")
-	public List<ProgrammingLanguage> getAll() {
+	public List<GetAllProgrammingLanguagesResponse> getAll() {
 		return programmingLanguageService.getAll();
 
 	}
 
 	@GetMapping("/getbyid/{id}")
 	public ProgrammingLanguage getById(@PathVariable("id") int id) {
-		return programmingLanguageService.getById(id);
+		return getById(id);
 	}
 	
 	
 	
 	@PostMapping("/add")
-	public void add(@RequestBody ProgrammingLanguage programmingLanguage) {
-		 programmingLanguageService.add(programmingLanguage);
+	public void add(CreateProgrammingLanguageRequest createProgrammingLanguageRequest) throws Exception {
+		 programmingLanguageService.add(createProgrammingLanguageRequest);
 	}
 	
 	
 	@PutMapping("/update")
-	public void update(@RequestBody ProgrammingLanguage programmingLanguage) {
-		programmingLanguageService.update(programmingLanguage);
+	public void update(UpdateProgrammingLanguageRequest updateProgrammingLanguageRequest) throws Exception {
+		programmingLanguageService.update(updateProgrammingLanguageRequest);
 	}
 	
 	
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable ("id") int id) {
-		programmingLanguageService.delete(id);
+		
 	}
 
 }
