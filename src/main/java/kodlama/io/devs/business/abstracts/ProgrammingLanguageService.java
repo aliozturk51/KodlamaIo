@@ -4,7 +4,7 @@ import java.util.List;
 
 import kodlama.io.devs.business.requests.CreateProgrammingLanguageRequest;
 import kodlama.io.devs.business.requests.UpdateProgrammingLanguageRequest;
-import kodlama.io.devs.business.responses.GetAllProgrammingLanguagesResponse;
+import kodlama.io.devs.business.responses.programmingLanguageResponses.GetAllProgrammingLanguagesResponse;
 import kodlama.io.devs.entities.concretes.ProgrammingLanguage;
 
 public interface ProgrammingLanguageService {

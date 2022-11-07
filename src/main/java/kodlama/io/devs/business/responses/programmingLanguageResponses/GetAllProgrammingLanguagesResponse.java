@@ -1,4 +1,4 @@
-package kodlama.io.devs.business.responses;
+package kodlama.io.devs.business.responses.programmingLanguageResponses;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
