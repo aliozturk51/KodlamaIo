@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlama.io.devs.business.abstracts.ProgrammingLanguageService;
-import kodlama.io.devs.business.requests.CreateProgrammingLanguageRequest;
-import kodlama.io.devs.business.requests.UpdateProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.programmingLanguageRequests.CreateProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.programmingLanguageRequests.DeleteProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.programmingLanguageRequests.UpdateProgrammingLanguageRequest;
 import kodlama.io.devs.business.responses.programmingLanguageResponses.GetAllProgrammingLanguagesResponse;
 import kodlama.io.devs.entities.concretes.ProgrammingLanguage;
 
@@ -53,9 +54,9 @@ public class ProgrammingLanguagesController {
 	}
 	
 	
-	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable ("id") int id) {
-		
+	@DeleteMapping("/delete")
+	public void delete(DeleteProgrammingLanguageRequest deleteProgrammingLanguageRequest) {
+		this.programmingLanguageService.delete(deleteProgrammingLanguageRequest);
 	}
 
 }
