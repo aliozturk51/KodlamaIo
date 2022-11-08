@@ -11,6 +11,7 @@ import kodlama.io.devs.business.requests.programmingLanguageRequests.CreateProgr
 import kodlama.io.devs.business.requests.programmingLanguageRequests.DeleteProgrammingLanguageRequest;
 import kodlama.io.devs.business.requests.programmingLanguageRequests.UpdateProgrammingLanguageRequest;
 import kodlama.io.devs.business.responses.programmingLanguageResponses.GetAllProgrammingLanguagesResponse;
+import kodlama.io.devs.business.responses.programmingLanguageResponses.GetProgrammingLanguageByIdResponse;
 import kodlama.io.devs.dataAccess.abstracts.ProgrammingLanguageDao;
 import kodlama.io.devs.entities.concretes.ProgrammingLanguage;
 
@@ -25,7 +26,6 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 	}
 
 	@Override
-	// Sorunsuz
 	public List<GetAllProgrammingLanguagesResponse> getAll() {
 
 		List<ProgrammingLanguage> programmingLanguages = programmingLanguageDao.findAll();
@@ -41,7 +41,7 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 		return programmingLanguagesResponse;
 	}
 
-	// Hata düzeltilecek
+	// NOT: Daha temiz hale getirilecek.
 	public void add(CreateProgrammingLanguageRequest createProgrammingLanguageRequest) throws Exception {
 
 		ProgrammingLanguage programmingLanguage = new ProgrammingLanguage();
@@ -63,14 +63,11 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 
 	}
 
-	// Update yaparken isim tekrarı oluyor.
 	public void update(UpdateProgrammingLanguageRequest updateProgrammingLanguageRequest) throws Exception {
 
 		ProgrammingLanguage programmingLanguage = new ProgrammingLanguage();
 		programmingLanguage.setId(updateProgrammingLanguageRequest.getId());
 		programmingLanguage.setName(updateProgrammingLanguageRequest.getName());
-
-		this.programmingLanguageDao.save(programmingLanguage);
 
 		List<ProgrammingLanguage> programmingLanguages = programmingLanguageDao.findAll();
 
@@ -93,14 +90,22 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 
 	@Override
 	public void delete(DeleteProgrammingLanguageRequest deleteProgrammingLanguageRequest) {
-		// TODO Auto-generated method stub
+		ProgrammingLanguage programmingLanguage = new ProgrammingLanguage();
+		programmingLanguage.setId(deleteProgrammingLanguageRequest.getId());
+
+		programmingLanguageDao.delete(programmingLanguage);
 
 	}
 
 	@Override
-	public ProgrammingLanguage getProgrammingLanguageById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public GetProgrammingLanguageByIdResponse getProgrammingLanguageById(int id) {
+		ProgrammingLanguage programmingLanguage = programmingLanguageDao.getReferenceById(id);
+
+		GetProgrammingLanguageByIdResponse programmingLanguageByIdResponse = new GetProgrammingLanguageByIdResponse();
+		programmingLanguageByIdResponse.setId(programmingLanguage.getId());
+		programmingLanguageByIdResponse.setName(programmingLanguage.getName());
+
+		return programmingLanguageByIdResponse;
 	}
 
 }

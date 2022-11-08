@@ -16,6 +16,7 @@ import kodlama.io.devs.business.requests.programmingLanguageRequests.CreateProgr
 import kodlama.io.devs.business.requests.programmingLanguageRequests.DeleteProgrammingLanguageRequest;
 import kodlama.io.devs.business.requests.programmingLanguageRequests.UpdateProgrammingLanguageRequest;
 import kodlama.io.devs.business.responses.programmingLanguageResponses.GetAllProgrammingLanguagesResponse;
+import kodlama.io.devs.business.responses.programmingLanguageResponses.GetProgrammingLanguageByIdResponse;
 import kodlama.io.devs.entities.concretes.ProgrammingLanguage;
 
 @RestController
@@ -35,9 +36,9 @@ public class ProgrammingLanguagesController {
 
 	}
 
-	@GetMapping("/getbyid/{id}")
-	public ProgrammingLanguage getById(@PathVariable("id") int id) {
-		return getById(id);
+	@GetMapping("/getbyid")
+	public GetProgrammingLanguageByIdResponse getById(int id) {
+		return programmingLanguageService.getProgrammingLanguageById(id);
 	}
 	
 	

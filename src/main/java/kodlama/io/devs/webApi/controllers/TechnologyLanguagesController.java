@@ -15,6 +15,7 @@ import kodlama.io.devs.business.requests.technologyLanguageRequests.CreateTechno
 import kodlama.io.devs.business.requests.technologyLanguageRequests.DeleteTechnologyLanguageRequest;
 import kodlama.io.devs.business.requests.technologyLanguageRequests.UpdateTechnologyLanguageRequest;
 import kodlama.io.devs.business.responses.technologyLanguageResponses.GetAllTechnologyLanguagesResponse;
+import kodlama.io.devs.business.responses.technologyLanguageResponses.GetTechnologyLanguageByIdResponse;
 
 @RestController
 @RequestMapping("/api/technologylanguages")
@@ -33,13 +34,18 @@ public class TechnologyLanguagesController {
 		return technologyLanguageService.getAll();
 	}
 	
+	@GetMapping("/getbyid")
+	public GetTechnologyLanguageByIdResponse getById(int id) throws Exception {
+		return technologyLanguageService.getTechnologyLanguageById(id);
+	}
+	
 	@PostMapping("/add")
-	public void add(CreateTechnologyLanguageRequest createTechnologyLanguageRequest) {
+	public void add(CreateTechnologyLanguageRequest createTechnologyLanguageRequest) throws Exception {
 		this.technologyLanguageService.add(createTechnologyLanguageRequest);
 	}
 	
 	@PutMapping("/update")
-	public void update(UpdateTechnologyLanguageRequest updateTechnologyLanguageRequest) {
+	public void update(UpdateTechnologyLanguageRequest updateTechnologyLanguageRequest) throws Exception  {
 		this.technologyLanguageService.update(updateTechnologyLanguageRequest);
 	}
 	
